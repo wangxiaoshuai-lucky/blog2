@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.wzy.dao.Blog_tagDao" >
+  <select id="selectByCondition" parameterType="org.cn.wzy.query.BaseQuery" resultMap="BaseResultMap"> 
+      SELECT
+      <include refid="Base_Column_List"/>
+      FROM blog_tag
+      <include refid="condition"/>
+      <include refid="order" />
+  </select>
+  <select id="selectCountByCondition" parameterType="org.cn.wzy.query.BaseQuery" resultType="java.lang.Integer"> 
+      SELECT
+      COUNT(*)
+      FROM blog_tag
+      <include refid="condition"/>
+  </select>
+  <insert id="insertList" parameterType="java.util.List" useGeneratedKeys="false">
+      <foreach collection="list" item="item" index="index" separator=";" >
+      INSERT into blog_tag
+      (tag_name)
+      VALUES
+      (#{item.tagName,jdbcType=VARCHAR})
+      </foreach>
+  </insert>
+  <delete id="deleteByIdsList" parameterType="java.util.List">
+      DELETE FROM blog_tag
+      WHERE id IN
+      <foreach collection="list" item="item" index="index" open="(" close=")" separator=",">
+          #{item}
+      </foreach>
+  </delete>
+  <select id="selectByIds" parameterType="java.util.List" resultMap="BaseResultMap"> 
+      SELECT
+      <include refid="Base_Column_List"/>
+      FROM blog_tag
+      WHERE id In
+      <foreach collection="list" item="item" index="index" open="(" close=")" separator=",">
+          #{item}
+      </foreach>
+  </select>
+    <select id="getAll" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM blog_tag
+        WHERE 1 = 1
+    </select>
+</mapper>

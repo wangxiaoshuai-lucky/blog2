@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.wzy.dao.User_MessageDao" >
+  <select id="selectByCondition" parameterType="org.cn.wzy.query.BaseQuery" resultMap="BaseResultMap"> 
+      SELECT
+      <include refid="Base_Column_List"/>
+      FROM user_message
+      <include refid="condition"/>
+      <include refid="order" />
+      <include refid="limit" />
+  </select>
+  <select id="selectCountByCondition" parameterType="org.cn.wzy.query.BaseQuery" resultType="java.lang.Integer"> 
+      SELECT
+      COUNT(*)
+      FROM user_message
+      <include refid="condition"/>
+  </select>
+  <insert id="insertList" parameterType="java.util.List" useGeneratedKeys="false">
+      <foreach collection="list" item="item" index="index" separator=";" >
+      INSERT into user_message
+      (blog_Id,content,commenter_Id,addtime,ip)
+      VALUES
+      (#{item.blogId,jdbcType=INTEGER},#{item.content,jdbcType=VARCHAR},#{item.commenterId,jdbcType=INTEGER},#{item.addtime,jdbcType=BIGINT},#{item.ip,jdbcType=VARCHAR})
+      </foreach>
+  </insert>
+  <delete id="deleteByIdsList" parameterType="java.util.List">
+      DELETE FROM user_message
+      WHERE id IN
+      <foreach collection="list" item="item" index="index" open="(" close=")" separator=",">
+          #{item}
+      </foreach>
+  </delete>
+  <select id="selectByIds" parameterType="java.util.List" resultMap="BaseResultMap"> 
+      SELECT
+      <include refid="Base_Column_List"/>
+      FROM user_message
+      WHERE id In
+      <foreach collection="list" item="item" index="index" open="(" close=")" separator=",">
+          #{item}
+      </foreach>
+  </select>
+
+
+    <resultMap id="vo" type="cn.wzy.vo.User_MessageUI">
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="blog_Id" property="blogId" jdbcType="INTEGER" />
+        <result column="m_content" property="content" jdbcType="VARCHAR" />
+        <result column="commenter_Id" property="commenterId" jdbcType="INTEGER" />
+        <result column="addtime" property="addtime" jdbcType="BIGINT" />
+        <result column="ip" property="ip" jdbcType="VARCHAR" />
+        <result column="username" property="username" jdbcType="VARCHAR" />
+        <result column="u_content" property="userContent" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <select id="getComments" resultMap="vo" parameterType="java.lang.Integer">
+        SELECT
+        m.id,blog_Id,m.content m_content,commenter_Id,
+        addtime,ip,username,u.content u_content
+        FROM user_message m, user_info u
+        WHERE u.id=m.commenter_Id AND m.blog_Id=#{id}
+        ORDER BY m.addtime DESC
+    </select>
+</mapper>

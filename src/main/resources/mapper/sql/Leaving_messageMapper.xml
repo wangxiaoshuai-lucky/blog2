@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.wzy.dao.Leaving_messageDao" >
+  <sql id="condition" >
+      WHERE 1 = 1 
+      <if test="query.content != null" >
+          AND content = #{query.content,jdbcType=VARCHAR}
+      </if>
+      <if test="query.ip != null" >
+          AND ip = #{query.ip,jdbcType=VARCHAR}
+      </if>
+      <if test="query.addtime != null" >
+          AND addtime = #{query.addtime,jdbcType=BIGINT}
+      </if>
+      <if test="query.id != null" >
+          AND id = #{query.id,jdbcType=INTEGER}
+      </if>
+  </sql>
+  <sql id="order" >
+    ORDER BY addtime DESC
+  </sql>
+    <sql id="limit">
+        <if test="start != null and rows != null" >
+            LIMIT #{start}, #{rows}
+        </if>
+    </sql>
+</mapper>

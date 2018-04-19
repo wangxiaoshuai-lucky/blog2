@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.wzy.dao.Blog_InfoDao" >
+  <resultMap id="BaseResultMap" type="cn.wzy.entity.Blog_Info" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="look_num" property="lookNum" jdbcType="INTEGER" />
+    <result column="start" property="start" jdbcType="BIGINT" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="cn.wzy.entity.Blog_Info" extends="BaseResultMap" >
+    <result column="info" property="info" jdbcType="LONGVARBINARY" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, look_num, start
+  </sql>
+  <sql id="Blob_Column_List" >
+    info
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from blog_info
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from blog_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.wzy.entity.Blog_Info" >
+    insert into blog_info (id, look_num, start, 
+      info)
+    values (#{id,jdbcType=INTEGER}, #{lookNum,jdbcType=INTEGER}, #{start,jdbcType=BIGINT}, 
+      #{info,jdbcType=LONGVARBINARY})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.wzy.entity.Blog_Info" >
+    insert into blog_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="lookNum != null" >
+        look_num,
+      </if>
+      <if test="start != null" >
+        start,
+      </if>
+      <if test="info != null" >
+        info,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="lookNum != null" >
+        #{lookNum,jdbcType=INTEGER},
+      </if>
+      <if test="start != null" >
+        #{start,jdbcType=BIGINT},
+      </if>
+      <if test="info != null" >
+        #{info,jdbcType=LONGVARBINARY},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.wzy.entity.Blog_Info" >
+    update blog_info
+    <set >
+      <if test="lookNum != null" >
+        look_num = #{lookNum,jdbcType=INTEGER},
+      </if>
+      <if test="start != null" >
+        start = #{start,jdbcType=BIGINT},
+      </if>
+      <if test="info != null" >
+        info = #{info,jdbcType=LONGVARBINARY},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="cn.wzy.entity.Blog_Info" >
+    update blog_info
+    set look_num = #{lookNum,jdbcType=INTEGER},
+      start = #{start,jdbcType=BIGINT},
+      info = #{info,jdbcType=LONGVARBINARY}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.wzy.entity.Blog_Info" >
+    update blog_info
+    set look_num = #{lookNum,jdbcType=INTEGER},
+      start = #{start,jdbcType=BIGINT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

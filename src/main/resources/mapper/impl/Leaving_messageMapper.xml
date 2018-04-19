@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.wzy.dao.Leaving_messageDao" >
+  <select id="selectByCondition" parameterType="org.cn.wzy.query.BaseQuery" resultMap="BaseResultMap"> 
+      SELECT
+      <include refid="Base_Column_List"/>
+      FROM leaving_message
+      <include refid="condition"/>
+      <include refid="order" />
+      <include refid="limit"/>
+  </select>
+  <select id="selectCountByCondition" parameterType="org.cn.wzy.query.BaseQuery" resultType="java.lang.Integer"> 
+      SELECT
+      COUNT(*)
+      FROM leaving_message
+      <include refid="condition"/>
+  </select>
+  <insert id="insertList" parameterType="java.util.List" useGeneratedKeys="false">
+      <foreach collection="list" item="item" index="index" separator=";" >
+      INSERT into leaving_message
+      (content,ip,addtime)
+      VALUES
+      (#{item.content,jdbcType=VARCHAR},#{item.ip,jdbcType=VARCHAR},#{item.addtime,jdbcType=BIGINT})
+      </foreach>
+  </insert>
+  <delete id="deleteByIdsList" parameterType="java.util.List">
+      DELETE FROM leaving_message
+      WHERE id IN
+      <foreach collection="list" item="item" index="index" open="(" close=")" separator=",">
+          #{item}
+      </foreach>
+  </delete>
+  <select id="selectByIds" parameterType="java.util.List" resultMap="BaseResultMap"> 
+      SELECT
+      <include refid="Base_Column_List"/>
+      FROM leaving_message
+      WHERE id In
+      <foreach collection="list" item="item" index="index" open="(" close=")" separator=",">
+          #{item}
+      </foreach>
+  </select>
+</mapper>

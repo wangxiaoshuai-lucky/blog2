@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	   xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+	   xmlns:aop="http://www.springframework.org/schema/aop" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context.xsd
+	http://www.springframework.org/schema/tx
+	http://www.springframework.org/schema/tx/spring-tx.xsd
+	http://www.springframework.org/schema/aop
+	http://www.springframework.org/schema/aop/spring-aop.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+	<context:annotation-config />
+
+	<context:component-scan base-package="cn" />
+
+	<bean
+			class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>classpath:database.properties</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
+		  init-method="init" destroy-method="close">
+		<property name="driverClassName" value="${jdbc.driver}" />
+		<property name="url" value="${jdbc.url}" />
+		<property name="username" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
+		<property name="initialSize" value="${druid.initialSize}" />
+		<property name="maxActive" value="${druid.maxActive}" />
+		<property name="maxWait" value="${druid.maxWait}" />
+		<property name="maxIdle" value="${druid.maxIdle}" />
+		<property name="minIdle" value="${druid.minIdle}" />
+		<property name="logAbandoned" value="${druid.logAbandoned}" />
+		<property name="removeAbandonedTimeout" value="${druid.removeAbandonedTimeout}" />
+		<property name="removeAbandoned" value="${druid.removeAbandoned}" />
+		<property name="timeBetweenEvictionRunsMillis" value="${druid.timeBetweenEvictionRunsMillis}" />
+		<property name="numTestsPerEvictionRun" value="${druid.numTestsPerEvictionRun}" />
+		<property name="validationQuery" value="${druid.validationQuery}" />
+		<property name="testWhileIdle" value="${druid.testWhileIdle}" />
+		<property name="testOnBorrow" value="${druid.testOnBorrow}" />
+		<property name="testOnReturn" value="${druid.testOnReturn}" />
+		<property name="minEvictableIdleTimeMillis" value="${druid.minEvictableIdleTimeMillis}" />
+		<property name="filters" value="${druid.filters}" />
+	</bean>
+
+	<bean id="transactionManager"
+		  class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+	<!-- enable transaction annotation support -->
+	<tx:annotation-driven transaction-manager="transactionManager" />
+
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="configLocation" value="classpath:mybatis-config.xml" />
+		<property name="mapperLocations" value="classpath*:mapper/**/*.xml" />
+	</bean>
+	<!--java对象对json的格式转换器-->
+	<mvc:annotation-driven>
+		<mvc:message-converters>
+			<bean class="org.springframework.http.converter.StringHttpMessageConverter">
+				<!-- <constructor-arg ref="utf8Charset"/> -->
+				<!-- <property name="supportedMediaTypes" value = "text/plain;charset=UTF-8" /> -->
+				<property name="writeAcceptCharset" value="false" /><!-- 用于避免响应头过大 -->
+				<property name = "supportedMediaTypes">
+					<list>
+						<value>text/plain;charset=UTF-8</value>
+						<value>text/html;charset=UTF-8</value>
+						<!--                         <value>text/json;charset=UTF-8</value>    -->
+					</list>
+				</property>
+			</bean>
+			<bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+				<property name = "supportedMediaTypes">
+					<list>
+						<value>text/json;charset=UTF-8</value>
+					</list>
+				</property>
+
+			</bean>
+		</mvc:message-converters>
+	</mvc:annotation-driven>
+
+	<bean id="mappergenerator" class="org.cn.wzy.util.MapperingGenerator"/>
+</beans>

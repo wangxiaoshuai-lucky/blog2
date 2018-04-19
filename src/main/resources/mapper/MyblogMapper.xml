@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.wzy.dao.MyblogDao" >
+  <resultMap id="BaseResultMap" type="cn.wzy.entity.Myblog" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="tag" property="tag" jdbcType="VARCHAR" />
+    <result column="writetime" property="writetime" jdbcType="BIGINT" />
+    <result column="look_num" property="lookNum" jdbcType="INTEGER" />
+    <result column="comment_num" property="commentNum" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="cn.wzy.entity.Myblog" extends="BaseResultMap" >
+    <result column="content" property="content" jdbcType="LONGVARBINARY" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, title, tag, writetime, look_num, comment_num
+  </sql>
+  <sql id="Blob_Column_List" >
+    content
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from myblog
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from myblog
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.wzy.entity.Myblog" >
+    insert into myblog (id, title, tag, 
+      writetime, look_num, comment_num, 
+      content)
+    values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{tag,jdbcType=VARCHAR}, 
+      #{writetime,jdbcType=BIGINT}, #{lookNum,jdbcType=INTEGER}, #{commentNum,jdbcType=INTEGER}, 
+      #{content,jdbcType=LONGVARBINARY})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.wzy.entity.Myblog" >
+    insert into myblog
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="tag != null" >
+        tag,
+      </if>
+      <if test="writetime != null" >
+        writetime,
+      </if>
+      <if test="lookNum != null" >
+        look_num,
+      </if>
+      <if test="commentNum != null" >
+        comment_num,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="tag != null" >
+        #{tag,jdbcType=VARCHAR},
+      </if>
+      <if test="writetime != null" >
+        #{writetime,jdbcType=BIGINT},
+      </if>
+      <if test="lookNum != null" >
+        #{lookNum,jdbcType=INTEGER},
+      </if>
+      <if test="commentNum != null" >
+        #{commentNum,jdbcType=INTEGER},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=LONGVARBINARY},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.wzy.entity.Myblog" >
+    update myblog
+    <set >
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="tag != null" >
+        tag = #{tag,jdbcType=VARCHAR},
+      </if>
+      <if test="writetime != null" >
+        writetime = #{writetime,jdbcType=BIGINT},
+      </if>
+      <if test="lookNum != null" >
+        look_num = #{lookNum,jdbcType=INTEGER},
+      </if>
+      <if test="commentNum != null" >
+        comment_num = #{commentNum,jdbcType=INTEGER},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=LONGVARBINARY},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="cn.wzy.entity.Myblog" >
+    update myblog
+    set title = #{title,jdbcType=VARCHAR},
+      tag = #{tag,jdbcType=VARCHAR},
+      writetime = #{writetime,jdbcType=BIGINT},
+      look_num = #{lookNum,jdbcType=INTEGER},
+      comment_num = #{commentNum,jdbcType=INTEGER},
+      content = #{content,jdbcType=LONGVARBINARY}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.wzy.entity.Myblog" >
+    update myblog
+    set title = #{title,jdbcType=VARCHAR},
+      tag = #{tag,jdbcType=VARCHAR},
+      writetime = #{writetime,jdbcType=BIGINT},
+      look_num = #{lookNum,jdbcType=INTEGER},
+      comment_num = #{commentNum,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
