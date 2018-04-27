@@ -41,7 +41,7 @@ public class User_InfoService {
         if (user_info == null || user_info.size() == 0) {
             return 2;//密码错误
         }
-        request.getSession().setAttribute("id",user_info.get(0).getId());
+        request.getSession(true).setAttribute("id",user_info.get(0).getId());
         return 1;
     }
 
