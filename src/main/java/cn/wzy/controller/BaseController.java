@@ -4,15 +4,29 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author wzy
  * @Date 2018/4/10 13:49
  */
 public abstract class BaseController {
-    public static int online_num = 0;
     protected static final ThreadLocal<HttpServletRequest> requests = new ThreadLocal();
     protected static final ThreadLocal<HttpServletResponse> responses = new ThreadLocal();
+
+    public static final Map<String, Long> users = new HashMap<>();
+
+    public static void refresh() {
+        synchronized (users) {
+            long now = System.currentTimeMillis();
+            for (String key : users.keySet()) {
+                if (now - users.get(key) >= 180000)
+                    users.remove(key);
+            }
+        }
+    }
     @ModelAttribute
     public void init(HttpServletRequest request, HttpServletResponse response) {
         this.requests.set(request);

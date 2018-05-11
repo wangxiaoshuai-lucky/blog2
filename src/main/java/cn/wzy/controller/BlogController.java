@@ -51,7 +51,7 @@ public class BlogController extends BaseController{
     @RequestMapping("/getInfo.do")
     @ResponseBody
     public ResultModel<Blog_InfoUI> getBlog_Info() {
-        return blog_infoService.getBlog_Info().setOnline_num(online_num);
+        return blog_infoService.getBlog_Info().setOnline_num(users.size());
     }
     /**
      * 通过条件查询相关blogs
@@ -63,7 +63,7 @@ public class BlogController extends BaseController{
     @RequestMapping("/queryByCondition.do")
     public ResultModel<MyblogUI> getBlogsByCondition(BaseQuery<Myblog> query, Myblog blog) {
         query.setQuery(blog);
-        return myblogService.queryBlogByCondition(query).setOnline_num(online_num);
+        return myblogService.queryBlogByCondition(query).setOnline_num(users.size());
     }
 
     /**
@@ -73,7 +73,7 @@ public class BlogController extends BaseController{
     @ResponseBody
     @RequestMapping("/getAllTags.do")
     public ResultModel<Blog_tag> getAllTags() {
-        return blog_tagService.getAllTags().setOnline_num(online_num);
+        return blog_tagService.getAllTags().setOnline_num(users.size());
     }
 
     /**
@@ -86,7 +86,7 @@ public class BlogController extends BaseController{
     @RequestMapping("/queryCountByCondition.do")
     public ResultModel<Integer> queryCountByCondition(BaseQuery<Myblog> query, Myblog blog) {
         query.setQuery(blog);
-        return myblogService.queryCountByCondition(query).setOnline_num(online_num);
+        return myblogService.queryCountByCondition(query).setOnline_num(users.size());
     }
 
     /**
@@ -97,7 +97,7 @@ public class BlogController extends BaseController{
     @ResponseBody
     @RequestMapping("/queryById.do")
     public ResultModel<MyblogUI> queryById(Integer id) {
-        return myblogService.queryById(id).setOnline_num(online_num);
+        return myblogService.queryById(id).setOnline_num(users.size());
     }
 
     /**
@@ -114,7 +114,7 @@ public class BlogController extends BaseController{
         if (id == null) {
             return result.setCode(ResultModel.FAILED + "用户未登录")
                     .setData(Arrays.asList(3))
-                    .setOnline_num(online_num);
+                    .setOnline_num(users.size());
         }
         message.setCommenterId(id);
         String randomString = (String) getRequest().getSession(true).getAttribute("randomString");
@@ -123,12 +123,12 @@ public class BlogController extends BaseController{
         if (randomString == null || !randomString.equals(str.toLowerCase()))
             return result.setData(Arrays.asList(2))
                     .setCode(ResultModel.FAILED + "验证码错误")
-                    .setOnline_num(online_num);
+                    .setOnline_num(users.size());
         message.setAddtime(new Date().getTime()).setIp(getRequest().getRemoteAddr());
         log.info("ip为：" + getRequest().getRemoteAddr() + "评论了你id为" + message.getBlogId() + "的blog");
         return result.setData(Arrays.asList(user_messageService.comment(message)))
                 .setCode(ResultModel.SUCCESS)
-                .setOnline_num(online_num);
+                .setOnline_num(users.size());
     }
 
 
@@ -148,7 +148,7 @@ public class BlogController extends BaseController{
         return new ResultModel<Integer>()
                 .setCode(ResultModel.SUCCESS)
                 .setData(Arrays.asList(myblogService.addBlog(record,article,password)))
-                .setOnline_num(online_num);
+                .setOnline_num(users.size());
     }
 
     /**
@@ -166,6 +166,6 @@ public class BlogController extends BaseController{
                 .setTotal(1)
                 .setCode(ResultModel.SUCCESS)
                 .setData(Arrays.asList(blog_infoService.updateInfo(article,password)))
-                .setOnline_num(online_num);
+                .setOnline_num(users.size());
     }
 }

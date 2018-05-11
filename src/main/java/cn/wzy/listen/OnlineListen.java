@@ -14,21 +14,11 @@ public class OnlineListen implements HttpSessionListener {
 
     @Override
     public void sessionCreated(HttpSessionEvent httpSessionEvent) {
-        synchronized (this){
-            if (BaseController.online_num <= 0)
-                BaseController.online_num = 0;
-            BaseController.online_num++;
             blog_InfoDao.addLookNum();
-        }
     }
 
     @Override
     public void sessionDestroyed(HttpSessionEvent httpSessionEvent) {
-        synchronized (this){
-            if (BaseController.online_num >= 1)
-                BaseController.online_num--;
-            else
-                BaseController.online_num = 0;
-        }
+            BaseController.refresh();
     }
 }

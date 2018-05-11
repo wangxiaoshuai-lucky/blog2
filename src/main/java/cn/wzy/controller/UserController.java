@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpSession;
 import java.util.Arrays;
 
 /**
@@ -39,10 +40,10 @@ public class UserController extends BaseController {
         if (randomString == null || !randomString.equals(str.toLowerCase()))
             return result.setData(Arrays.asList(2))
                     .setCode(ResultModel.SUCCESS)
-                    .setOnline_num(online_num);
+                    .setOnline_num(users.size());
         return result.setData(Arrays.asList(user_infoService.reg(record)))
                 .setCode(ResultModel.SUCCESS)
-                .setOnline_num(online_num);
+                .setOnline_num(users.size());
     }
 
     /**
@@ -60,10 +61,10 @@ public class UserController extends BaseController {
         if (randomString == null || !randomString.equals(str.toLowerCase()))
             return result.setData(Arrays.asList(3))
                     .setCode(ResultModel.SUCCESS)
-                    .setOnline_num(online_num);
+                    .setOnline_num(users.size());
         return result.setData(Arrays.asList(user_infoService.login(record,getRequest())))
                 .setCode(ResultModel.SUCCESS)
-                .setOnline_num(online_num);
+                .setOnline_num(users.size());
     }
 
     /**
@@ -83,15 +84,22 @@ public class UserController extends BaseController {
     @ResponseBody
     @RequestMapping("checkOnline.do")
     public ResultModel<User_Info> checkOnline() {
-        Integer id =(Integer) getRequest().getSession().getAttribute("id");
+        HttpSession session = getRequest().getSession(false);
+        if (session == null)
+            return new ResultModel<User_Info>()
+                    .setOnline_num(users.size())
+                    .setData(null)
+                    .setCode(ResultModel.SUCCESS)
+                    .setTotal(0);
+        Integer id =(Integer) session.getAttribute("id");
         if (id == null)
-        return new ResultModel<User_Info>()
-                .setOnline_num(online_num)
+            return new ResultModel<User_Info>()
+                .setOnline_num(users.size())
                 .setData(null)
                 .setCode(ResultModel.SUCCESS)
                 .setTotal(0);
         return new ResultModel<User_Info>()
-                .setOnline_num(online_num)
+                .setOnline_num(users.size())
                 .setTotal(1)
                 .setData(Arrays.asList(user_infoService.getUserInfo(id)))
                 .setCode(ResultModel.SUCCESS);
@@ -103,7 +111,7 @@ public class UserController extends BaseController {
 
         getRequest().getSession().removeAttribute("id");
         return new ResultModel<User_Info>()
-                    .setOnline_num(online_num)
+                    .setOnline_num(users.size())
                     .setData(null)
                     .setCode(ResultModel.SUCCESS)
                     .setTotal(0);

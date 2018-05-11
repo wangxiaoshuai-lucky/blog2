@@ -3,16 +3,18 @@ package cn.wzy.controller;
 import cn.wzy.model.ResultModel;
 import com.sun.image.codec.jpeg.JPEGCodec;
 import com.sun.image.codec.jpeg.JPEGImageEncoder;
+import lombok.extern.log4j.Log4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpSession;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Random;
-
+@Log4j
 @Controller
 @RequestMapping("/pic")
 public class PicController extends BaseController{
@@ -46,13 +48,12 @@ public class PicController extends BaseController{
     @ResponseBody
     @RequestMapping("/getPic.do")
     public void getPic() throws IOException {
+        users.put(getRequest().getRemoteAddr(),System.currentTimeMillis());
         getResponse().setContentType("image/jpeg");
         String randomString = getRandomString().toLowerCase();
-        getRequest().getSession(true).setAttribute("randomString", randomString);
-
+        getRequest().getSession().setAttribute("randomString", randomString);
         int width = 65;
         int height = 30;
-
         Color color = getRandomColor();
         Color reverse = getReverseColor(color);
 

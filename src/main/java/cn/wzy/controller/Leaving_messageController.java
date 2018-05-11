@@ -35,7 +35,7 @@ public class Leaving_messageController extends BaseController {
     @RequestMapping("queryByCondition.do")
     public ResultModel<Leaving_message> queryByCondition(BaseQuery<Leaving_message> query, Leaving_message leave) {
         query.setQuery(leave);
-        return leavingService.queryByCondition(query).setOnline_num(online_num);
+        return leavingService.queryByCondition(query).setOnline_num(users.size());
     }
 
     /**
@@ -54,13 +54,13 @@ public class Leaving_messageController extends BaseController {
         if (randomString == null || !randomString.equals(userstr))
             return result.setData(Arrays.asList(false))
                     .setCode(ResultModel.FAILED + "验证码错误")
-                    .setOnline_num(online_num);
+                    .setOnline_num(users.size());
         record.setAddtime(new Date().getTime())
                 .setIp(this.getRequest().getRemoteAddr());
         log.info("ip为：" + getRequest().getRemoteAddr() + "给你留言" + record.getContent());
         return result.setData(Arrays.asList(leavingService.addLeaveMessage(record)))
                 .setCode(ResultModel.SUCCESS)
-                .setOnline_num(online_num);
+                .setOnline_num(users.size());
     }
 
     /**
@@ -72,6 +72,6 @@ public class Leaving_messageController extends BaseController {
     @RequestMapping("/queryCount.do")
     public ResultModel<Integer> queryCount(BaseQuery<Leaving_message> query, Leaving_message record) {
         query.setQuery(record);
-        return leavingService.queryCountByCondition(query).setOnline_num(online_num);
+        return leavingService.queryCountByCondition(query).setOnline_num(users.size());
     }
 }

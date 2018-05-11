@@ -35,6 +35,6 @@ public class UserMessageController extends BaseController {
         return new ResultModel<User_MessageUI>().setData(list)
                 .setTotal(list.size())
                 .setCode(ResultModel.SUCCESS)
-                .setOnline_num(online_num);
+                .setOnline_num(users.size());
     }
 }
