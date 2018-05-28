@@ -22,7 +22,7 @@ public abstract class BaseController {
         synchronized (users) {
             long now = System.currentTimeMillis();
             for (String key : users.keySet()) {
-                if (now - users.get(key) >= 180000)
+                if (now - users.get(key) >= 30000l)
                     users.remove(key);
             }
         }

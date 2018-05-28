@@ -4,6 +4,8 @@ import cn.wzy.BaseTest;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.HashMap;
+
 /**
  * @author wzy
  * @Date 2018/4/10 12:28
@@ -42,5 +44,10 @@ public class MyblogDaoTest extends BaseTest {
     @Test
     public void test5() {
         System.out.println(blog_infoDao.getAdminPassword());
+        HashMap<String, Integer> map = new HashMap<>();
+        map.put("asdf",2);
+        map.put("33",2);
+        map.remove("33");
+        System.out.println(map.size());
     }
 }

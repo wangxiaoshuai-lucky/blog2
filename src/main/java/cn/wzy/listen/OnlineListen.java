@@ -14,7 +14,8 @@ public class OnlineListen implements HttpSessionListener {
 
     @Override
     public void sessionCreated(HttpSessionEvent httpSessionEvent) {
-            blog_InfoDao.addLookNum();
+        blog_InfoDao.addLookNum();
+        BaseController.refresh();
     }
 
     @Override
