@@ -4,6 +4,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -39,5 +42,18 @@ public abstract class BaseController {
 
     protected HttpServletResponse getResponse() {
         return responses.get();
+    }
+
+    protected String queryAdress() throws IOException {
+        String command = "java -classpath /root/AdressQueryUtil AdressQuery " + getRequest().getRemoteAddr();
+        BufferedReader br;
+        Process p = Runtime.getRuntime().exec(command);
+        br = new BufferedReader(new InputStreamReader(p.getInputStream(),"UTF-8"));
+        String line;
+        StringBuilder sb = new StringBuilder();
+        while ((line = br.readLine()) != null) {
+            sb.append(line);
+        }
+        return sb.toString();
     }
 }

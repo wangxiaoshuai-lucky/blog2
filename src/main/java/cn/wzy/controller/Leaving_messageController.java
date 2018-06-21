@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.Date;
 
@@ -46,7 +47,7 @@ public class Leaving_messageController extends BaseController {
      */
     @ResponseBody
     @RequestMapping("addLeaveMessage.do")
-    public ResultModel<Boolean> addLeaveMessage(String userstr, Leaving_message record) {
+    public ResultModel<Boolean> addLeaveMessage(String userstr, Leaving_message record) throws IOException {
         ResultModel<Boolean> result = new ResultModel<>();;
         String randomString = (String) getRequest().getSession(true).getAttribute("randomString");
         //验证一次就销毁，防止重复提交
@@ -57,7 +58,7 @@ public class Leaving_messageController extends BaseController {
                     .setOnline_num(users.size());
         record.setAddtime(new Date().getTime())
                 .setIp(this.getRequest().getRemoteAddr());
-        log.info("ip为：" + getRequest().getRemoteAddr() + "给你留言" + record.getContent());
+        log.info("ip为：" + getRequest().getRemoteAddr() + "(" + queryAdress() + ")" + "给你留言" + record.getContent());
         return result.setData(Arrays.asList(leavingService.addLeaveMessage(record)))
                 .setCode(ResultModel.SUCCESS)
                 .setOnline_num(users.size());

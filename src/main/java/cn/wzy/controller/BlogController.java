@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
@@ -108,7 +109,7 @@ public class BlogController extends BaseController{
      */
     @ResponseBody
     @RequestMapping("/comment.do")
-    public ResultModel<Integer> comment(User_Message message, String str) {
+    public ResultModel<Integer> comment(User_Message message, String str) throws IOException {
         ResultModel<Integer> result = new ResultModel<>();
         Integer id = (Integer) getRequest().getSession().getAttribute("id");
         if (id == null) {
@@ -125,7 +126,7 @@ public class BlogController extends BaseController{
                     .setCode(ResultModel.FAILED + "验证码错误")
                     .setOnline_num(users.size());
         message.setAddtime(new Date().getTime()).setIp(getRequest().getRemoteAddr());
-        log.info("ip为：" + getRequest().getRemoteAddr() + "评论了你id为" + message.getBlogId() + "的blog");
+        log.info("ip为：" + getRequest().getRemoteAddr() + "(" + queryAdress() + ")"+ "评论了你id为" + message.getBlogId() + "的blog");
         return result.setData(Arrays.asList(user_messageService.comment(message)))
                 .setCode(ResultModel.SUCCESS)
                 .setOnline_num(users.size());
