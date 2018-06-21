@@ -9,6 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.List;
 
 /**
@@ -41,5 +44,10 @@ public class User_MessageDaoTest extends BaseTest {
     public void test5() {
         List<User_MessageUI> list = dao.getComments(1);
         return;
+    }
+
+    @Test
+    public void test6() throws IOException {
+
     }
 }

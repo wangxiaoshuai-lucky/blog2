@@ -30,7 +30,7 @@
         <dependency>
             <groupId>org.cn</groupId>
             <artifactId>wzy</artifactId>
-            <version>1.0-RELEASE</version>
+            <version>1.0.3-RELEASE</version>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>

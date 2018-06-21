@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.Arrays;
 
 /**
@@ -72,8 +75,17 @@ public class UserController extends BaseController {
      */
     @ResponseBody
     @RequestMapping("log.do")
-    public String userLog(){
-        log.info("ip为:" + getRequest().getRemoteAddr() + "访问了你的网站!");
+    public String userLog() throws IOException {
+        String command = "java -classpath /root/AdressQueryUtil AdressQuery" + getRequest().getRemoteAddr();
+        BufferedReader br;
+        Process p = Runtime.getRuntime().exec(command);
+        br = new BufferedReader(new InputStreamReader(p.getInputStream(),"GBK"));
+        String line;
+        StringBuilder sb = new StringBuilder();
+        while ((line = br.readLine()) != null) {
+            sb.append(line + "\n");
+        }
+        log.info("ip为:" + getRequest().getRemoteAddr() + "访问了你的网站!" + "ta的地址：" + sb.toString());
         return "SUCCESS";
     }
 
