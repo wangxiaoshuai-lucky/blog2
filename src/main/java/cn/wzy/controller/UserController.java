@@ -76,16 +76,16 @@ public class UserController extends BaseController {
     @ResponseBody
     @RequestMapping("log.do")
     public String userLog() throws IOException {
-        String command = "java -classpath /root/AdressQueryUtil AdressQuery" + getRequest().getRemoteAddr();
+        String command = "java -classpath /root/AdressQueryUtil AdressQuery " + getRequest().getRemoteAddr();
         BufferedReader br;
         Process p = Runtime.getRuntime().exec(command);
-        br = new BufferedReader(new InputStreamReader(p.getInputStream(),"GBK"));
+        br = new BufferedReader(new InputStreamReader(p.getInputStream(),"UTF-8"));
         String line;
         StringBuilder sb = new StringBuilder();
         while ((line = br.readLine()) != null) {
             sb.append(line + "\n");
         }
-        log.info("ip为:" + getRequest().getRemoteAddr() + "访问了你的网站!" + "ta的地址：" + sb.toString());
+        log.info("ip:" + getRequest().getRemoteAddr() + " (" + sb.toString() + ") 来访！" );
         return "SUCCESS";
     }
 
