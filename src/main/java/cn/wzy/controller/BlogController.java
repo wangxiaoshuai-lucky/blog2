@@ -143,9 +143,6 @@ public class BlogController extends BaseController{
     @ResponseBody
     @RequestMapping(value = "/addBlog.do",method = {RequestMethod.POST})
     public ResultModel<Integer> addBlog(Myblog record, String article, String password) {
-
-        String ne = getRequest().getCharacterEncoding();
-
         return new ResultModel<Integer>()
                 .setCode(ResultModel.SUCCESS)
                 .setData(Arrays.asList(myblogService.addBlog(record,article,password)))

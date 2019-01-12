@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="baidu-site-verification" content="5NEEbrIA6H" />
+    <title>王小征的个人博客</title>
+    <script src="/blog2/static/js/jquery-3.3.1.min.js"></script>
+    <script src="/blog2/static/js/main-min.js"></script>
+    <script src="/blog2/static/js/leave-min.js"></script>
+    <link rel="SHORTCUT ICON" href="/blog2/static/img/bitbug_favicon.ico"/>
+    <link href="/blog2/static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/blog2/static/css/main.css" rel="stylesheet">
+    <link href="/blog2/static/css/base.css" rel="stylesheet">
+    <script src="/blog2/static/js/scrollReveal-min.js"></script>
+
+    <script src="/blog2/static/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/blog2/static/js/shCore-min.js"></script>
+    <script type="text/javascript" charset="UTF-8" src="/blog2/static/ueditor/ueditor.parse.min.js"></script>
+    <link rel="stylesheet" href="/blog2/static/ueditor/third-party/SyntaxHighlighter/shCoreDefault.css">
+</head>
+<body>
+
+<div id="top" style="text-align: center" data-scroll-reveal="enter top over 0.5s">
+
+</div>
+<div id="maxDiv" style="width: 98%">
+    <div id="nav" style="display: flex;">
+        <div class="leftd"></div>
+        <nav class="topnav" data-scroll-reveal="enter right over 0.5s" style="height: auto">
+            <a id="blog" href="#"><span style="color: #1b6d85">博客</span>
+                <span class="en" style="color: #1b6d85">Blog</span></a>
+            <a id="about" href="#"><span style="color: #1b6d85">关于我</span>
+                <span class="en" style="color: #1b6d85">About</span></a>
+            <a id="say" href="#"><span style="color: #1b6d85">留言</span>
+                <span class="en" style="color: #1b6d85">Saying</span>
+            </a>
+            <a id="login" href="#"><span style="color: #1b6d85">登录</span>
+                <span class="en" style="color: #1b6d85">Login</span>
+            </a>
+            <a id="reg" href="#"><span style="color: #1b6d85">注册</span>
+                <span class="en" style="color: #1b6d85">Reg</span>
+            </a>
+        </nav>
+    </div>
+    <div style="display: flex;">
+        <div class="leftd"></div>
+        <div id="center">
+            <div style="display:none">
+                <img id="555" src="/blog2/pic/getPic.do">
+                <script>
+                    $("#555").attr('src',"/blog2/pic/getPic.do?t=" + Math.random());
+                </script>
+            </div>
+        </div>
+        <div class="split"></div>
+        <div>
+            <div id="tag" style="background-color: #1b6d85">
+                <label >Blog分类</label>
+            </div>
+            <div id="tags">
+            </div>
+            <div class="split"></div>
+            <div id="info">
+                <img src="/blog2/static/img/1.jpg" id="img1"/>
+                <br/>
+                <p style="font-size: 14px; color: #788087;">当前人数: <span id="online"> </span></p>
+                <br/>
+                <p style="font-size: 14px; color: #788087;">总浏览量:  <span id="total"></span></p>
+                <br/>
+                <p style="font-size: 14px; color: #788087;">运行时间:  <span id="time"></span></p>
+            </div>
+            <div class="split"></div>
+            <div id="barrage">
+                Welcome<br/><input id="text" type="text" style="width:200px"/>
+                <button onclick="send()">发送消息</button>
+                <button onclick="closeWebSocket()">关闭消息连接</button>
+            </div>
+        </div>
+    </div>
+    <div style="text-align: center">
+        <p>Copyright © 2018-  wzy. All Rights Reserved</p>
+        <p>
+            <br/>
+        </p>
+        <p>
+            <br/>
+        </p>
+        <p>
+            <br/>
+        </p>
+    </div>
+</div>
+<script>
+    if (!(/msie [6|7|8|9]/i.test(navigator.userAgent))){//(!(/msie [6|7|8|9]/i.test(navigator.userAgent))判断浏览器
+        (function(){//scrollReveal的启动
+            window.scrollReveal = new scrollReveal({reset: true});
+        })();
+    };
+</script>
+<script type="text/javascript">
+    var websocket = null;
+    //判断当前浏览器是否支持WebSocket
+    if ('WebSocket' in window) {
+        websocket = new WebSocket("ws://wangzhengyu.cn/blog2/websocket");
+    }
+    else {
+        alert('当前浏览器 Not support websocket')
+    }
+
+    //连接发生错误的回调方法
+    websocket.onerror = function () {
+        setMessageInnerHTML("WebSocket连接发生错误");
+    };
+
+    //连接成功建立的回调方法
+    websocket.onopen = function () {
+        setMessageInnerHTML("welcome");
+    }
+
+    //接收到消息的回调方法
+    websocket.onmessage = function (event) {
+        setMessageInnerHTML(event.data);
+    }
+
+    //连接关闭的回调方法
+    websocket.onclose = function () {
+        setMessageInnerHTML("关闭消息连接");
+    }
+
+    //监听窗口关闭事件，当窗口关闭时，主动去关闭websocket连接，防止连接还没断开就关闭窗口，server端会抛异常。
+    window.onbeforeunload = function () {
+        closeWebSocket();
+    }
+
+    //将消息显示在网页上
+    function setMessageInnerHTML(innerHTML) {
+        // document.getElementById('message').innerHTML += innerHTML + '<br/>';
+        tangmu(innerHTML);
+    }
+
+    //关闭WebSocket连接
+    function closeWebSocket() {
+        websocket.close();
+    }
+
+    //发送消息
+    function send() {
+        var message = document.getElementById('text').value;
+        websocket.send(message);
+    }
+</script>
+<script>
+    function danmu() {
+        this.name='di1'+ Math.random();
+        this.si=null;
+        this.move=function (text) {
+            var tangmu = document.getElementById("top");
+            var textStyle=$("<font class='dan'></font>").text("" + text);
+            textStyle.attr("id","" +this.name);
+            var mathHeight = Math.round(Math.random()*tangmu.offsetHeight)+"px";
+            var textLeft=(tangmu.offsetWidth - text.toString().length*24) +"px";
+            console.log(text.toString().length);
+            $("#top").append(textStyle);
+            var textStyleObj = document.getElementById(""+this.name);
+            textStyleObj.style.left=textLeft;
+            textStyleObj.style.top=mathHeight;
+            this.si = setInterval(function () {
+                this.xunhuan();
+            }.bind(this),100);
+        }.bind(this);
+        this.xunhuan=function(){
+            var textStyleObj = document.getElementById(""+this.name);
+
+            var x=parseInt(textStyleObj.style.left);
+
+            if(x<textStyleObj.style.width){
+                clearInterval(this.si);
+                textStyleObj.innerHTML="";
+            }else{
+                x-=18;
+            }
+            textStyleObj.style.left=x+"px";
+        }.bind(this);
+    }
+    function tangmu(text){
+        new danmu().move(text);
+    }
+</script>
+</body>
+</html>

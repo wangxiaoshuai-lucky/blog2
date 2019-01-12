@@ -37,9 +37,6 @@ public class MyblogService {
      * @return
      */
     public ResultModel<MyblogUI> queryBlogByCondition(BaseQuery<Myblog> query) {
-        if (query.getStart() != null && query.getRows() != null) {
-            query.setStart((query.getStart() - 1) * query.getRows());
-        }
         ResultModel<MyblogUI> result = new ResultModel<>();
         List<Myblog> oldList = dao.selectByCondition(query);
         if (oldList == null) {
@@ -94,9 +91,6 @@ public class MyblogService {
      * @return
      */
     public ResultModel<Integer> queryCountByCondition(BaseQuery<Myblog> query) {
-        if (query.getStart() != null && query.getRows() != null) {
-            query.setStart((query.getStart() - 1) * query.getRows());
-        }
         ResultModel<Integer> result = new ResultModel<>();
         int count = dao.selectCountByCondition(query);
         if (count == -1) {
@@ -127,6 +121,7 @@ public class MyblogService {
         while ((img = article.indexOf("<img",start)) != -1) {
             int s = article.indexOf("/>",img);
             article = article.substring(0,s) + "/></div>" + article.substring(s + 2);
+            start = s;
         }
         try {
             record.setWritetime(new Date().getTime())

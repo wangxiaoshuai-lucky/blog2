@@ -26,9 +26,6 @@ public class Leaving_messageService {
      * @return
      */
     public ResultModel<Leaving_message> queryByCondition(BaseQuery<Leaving_message> query) {
-        if (query.getStart() != null && query.getRows() != null) {
-            query.setStart((query.getStart() - 1) * query.getRows());
-        }
         ResultModel<Leaving_message> result = new ResultModel<>();
         List<Leaving_message> list = dao.selectByCondition(query);
         if (list == null) {
@@ -54,9 +51,6 @@ public class Leaving_messageService {
      * @return
      */
     public ResultModel<Integer> queryCountByCondition(BaseQuery<Leaving_message> query) {
-        if (query.getStart() != null && query.getRows() != null) {
-            query.setStart((query.getStart() - 1) * query.getRows());
-        }
         return new ResultModel<Integer>()
                 .setData(Arrays.asList(dao.selectCountByCondition(query)))
                 .setCode(ResultModel.SUCCESS);
