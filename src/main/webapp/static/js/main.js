@@ -102,10 +102,11 @@ function loadTags() {
                 txt.click(function () {
                     nowtag = this.innerHTML;
                     nowpag = 1;
+                    $("#tags").slideToggle("slow");
                     queryCountByCondition();
                 });
                 txt.html(result.data[i].tagName);
-                $("#tags").append("<br/>",txt,"<br/>");
+                $("#tags").append('<label>',txt,'</label>');
             }
             if (result.online_num != null)
                 $("#online").html(result.online_num + "人");
@@ -172,7 +173,7 @@ function queryByCondition() {
             $("#center").html("<br/>");
             for (var i = 0; i < data.total; i++) {
                 dataOfNowPage[i] = data.data[i].id;
-                var txt = $("<div class='article' data-scroll-reveal='enter right over 0.5s'></div>");
+                var txt = $("<div class='article' data-scroll-reveal='enter bottom over 0.5s'></div>");
                 var title = $("<p class='title'></p>");
                 title.html(addNbsp(2) + data.data[i].title);
                 title.attr("id",i);
@@ -185,7 +186,7 @@ function queryByCondition() {
                 });
                 $("#center").append(txt);
             }
-            var txt = $("<div style='text-align: center' data-scroll-reveal='enter right over 0.5s'></div>");
+            var txt = $("<div style='text-align: center' data-scroll-reveal='enter bottom over 0.5s'></div>");
             txt.append("<ul class=\"pagination\"></ul>");
             $("#center").append(txt);
             $(".pagination").createPage({
@@ -226,7 +227,7 @@ function lookContent(i) {
                 "\t<li style=\"vertical-align:middle;\"><a href=\"#\" onclick='queryByCondition()'>&laquo;返回</a></li>\n" +
                 "</ul>");
             //头部信息
-            var txt = $("<div style='text-align: center' data-scroll-reveal='enter right over 0.5s'></div>");
+            var txt = $("<div style='text-align: center' data-scroll-reveal='enter bottom over 0.5s'></div>");
             var title = $("<p class='title'></p>");
             title.html("" + result.data[0].title);
             txt.append(title,addbottom(result.data[0].writetime,result.data[0].tag
@@ -254,7 +255,7 @@ function lookContent(i) {
  * 评论的表单
  */
 function loadCommentForm() {
-    $("#center").append("<div style=\"padding-left: 35%; \"><form class=\"bs-example bs-example-form\" role=\"form\" id='commentform'>\n" +
+    $("#center").append("<div class=\"messageInput\"><form class=\"bs-example bs-example-form\" role=\"form\" id='commentform'>\n" +
         "                    <div class=\"input-group\">\n" +
         "                        <span class=\"input-group-addon\">评论区</span>\n" +
         "                        <textarea id='words' placeholder='输入评论' style=\"width:185px;margin-right: 50px;\" class=\"form-control\" rows=\"2\"></textarea>\n" +
@@ -361,7 +362,7 @@ function loadComments() {
             var comments = $("<div id='comments'></div>");
             var data = result.data;
             for (var i = 0; i < result.total; ++i) {
-                var txt = $("<p data-scroll-reveal='enter right over 0.5s'></p>");
+                var txt = $("<p data-scroll-reveal='enter bottom over 0.5s'></p>");
                 txt.append(adduser(data[i].username,data[i].userContent,data[i].content,data[i].addtime));
                 comments.append(txt);
             }
@@ -422,10 +423,10 @@ function addbottom(time, tag, looks, comments) {
  */
 function addNextAndpre() {
     return "<ul class=\"pager\">\n" +
-        "\t<li class=\"previous\"><a onclick='pre()' href='#'>&larr; Older</a></li>\n" +
+        "\t<li class=\"previous\"><a onclick='pre()' href='#'>Older</a></li>\n" +
         "\t<li class=\"center-block\"><a onclick='displayComment()'><label>用户评论</label></a></li>\n" +
         "\t<li class=\"center-block\"><a onclick='commentForm()'><label>我要评论</label></a></li>\n" +
-        "\t<li class=\"next\"><a onclick='nex()' href='#'>Newer &rarr;</a></li>\n" +
+        "\t<li class=\"next\"><a onclick='nex()' href='#'>Newer</a></li>\n" +
         "</ul>";
 }
 

@@ -4,7 +4,12 @@ body{
 }
 #maxDiv{
 }
+#contentDiv{
+    display: flex;
+    width: 100%;
+}
 #top{
+    width: 100%;
 	height:200px;
 	/*border:1px red solid;*/
     background-image: url("../img/background.png");
@@ -26,15 +31,19 @@ body{
     background-color: #FFFFFF;
 }
 #tag{
-	width:200px;
+	width:100%;
 	/*border:1px green solid;*/
     background-color: #FFFFFF;
     text-align: center;
 }
 #tags{
-    width:200px;
+    width:100%;
     text-align: center;
     background-color: #FFFFFF;
+}
+#tags label{
+    margin-top: 25px;
+    margin-right: 20px;
 }
 .commentTime{
     color: #ccc;
@@ -74,13 +83,12 @@ body{
     /*border:1px green solid;*/
 }
 #info{
-    height: 200px;
+    width:100%;
     /*border:1px green solid;*/
     background-color: #FFFFFF;
 }
 #barrage{
-    width:200px;
-    height: 200px;
+    width:100%;
     /*border:1px green solid;*/
     background-color: #FFFFFF;
 }
@@ -92,3 +100,59 @@ body{
      font-size:24px;
      color:red;
  }
+img{
+    width:auto;
+    max-width:70%;
+}
+#tagAndInfo {
+    width: 13%;
+}
+.topnav{
+    margin-left: 15%;
+}
+.messageInput{
+    padding-left: 35%;
+}
+.previous{
+    margin-right: 1px;
+}
+@media screen and (max-width: 980px) {
+    #top{
+        height:100px;
+    }
+    #maxDiv{
+        text-align: center;
+        width: 100%;
+    }
+    #contentDiv{
+        margin: auto;
+        display: block;
+        width: 95%;
+    }
+    #tagAndInfo {
+        width: 100%;
+    }
+    #center{
+        width:100%;
+        text-align: left;
+    }
+    .topnav{
+        margin-left: 0px;
+    }
+    .topnav a{
+        margin-left: 2px;
+        margin-right: 10px;
+        margin-top: 10px;
+    }
+    .leftd{
+        width: 5px;
+    }
+    .messageInput{
+        padding-left: 20%;
+    }
+    .dan{
+         position:absolute;
+         font-size:15px;
+         color:red;
+     }
+}

@@ -3,7 +3,7 @@
 <head>
     <title>后台界面</title>
     <meta charset="utf-8">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <script type="text/javascript" charset="utf-8" src="../ueditor/ueditor.config.js"></script>
     <script type="text/javascript" charset="UTF-8" src="../ueditor/ueditor.all.min.js"></script>
     <script type="text/javascript" charset="UTF-8" src="../ueditor/lang/zh-cn/zh-cn.js"></script>
@@ -13,26 +13,36 @@
     <script type="text/javascript">
         uParse('#con',{rootPath:'../ueditor'});
     </script>
+    <style type="text/css">
+        @media screen and (max-width: 980px) {
+            #content{
+                width: 100%;
+            }
+        }
+    </style>
 </head>
 <body>
-        <form action="/blog2/blog/addBlog.do" method="post">
-            <script id="eee" type="text/plain" ></script>
-            title:<input type="text" name="title"/>
-            tag:<input type="text" name="tag"/>
-            管理员密码:<input type="password" name="password"/>
-            <button type="submit">提交</button>
-        </form>
+<div id="content">
+    <form action="/blog2/blog/addBlog.do" method="post">
+        <script id="eee" type="text/plain" ></script>
+        title:<input type="text" name="title"/>
+        tag:<input type="text" name="tag"/>
+        管理员密码:<input type="password" name="password"/>
+        <button type="submit">提交</button>
+    </form>
 
-        <form action="/blog2/blog/update.do" method="post">
-            <script id="ee2" type="text/plain" ></script>
-            管理员密码:<input type="password" name="password"/>
-            <button type="submit">提交</button>
-        </form>
+    <form action="/blog2/blog/update.do" method="post">
+        <script id="ee2" type="text/plain" ></script>
+        管理员密码:<input type="password" name="password"/>
+        <button type="submit">提交</button>
+    </form>
 
 
-        <script type="text/javascript">
-            UE.getEditor('eee');
-            UE.getEditor('ee2');
-        </script>
+    <script type="text/javascript">
+        UE.getEditor('eee');
+        UE.getEditor('ee2');
+    </script>
+</div>
+
 </body>
 </html>

@@ -116,13 +116,6 @@ public class MyblogService {
         }
         article = article.replace("<pre","<div class=\"codeDiv\"><pre");
         article = article.replace("</pre>","</pre></div>");
-        article = article.replace("<img","<div class=\"codeDiv\"><img");
-        int img, start = 0;
-        while ((img = article.indexOf("<img",start)) != -1) {
-            int s = article.indexOf("/>",img);
-            article = article.substring(0,s) + "/></div>" + article.substring(s + 2);
-            start = s;
-        }
         try {
             record.setWritetime(new Date().getTime())
                     .setLookNum(0)

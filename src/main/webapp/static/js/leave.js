@@ -20,13 +20,13 @@ function queryNowPage() {
             $("#center").html("");
             var data = result.data;
             for (var i = 0; i < maxrows; ++i) {
-                var txt = $("<p data-scroll-reveal='enter right over 0.5s'></p>");
+                var txt = $("<p data-scroll-reveal='enter bottom over 0.5s'></p>");
                 txt.append(addmessage("陌生人" + (i + 1) ,data[i].content,data[i].addtime));
                 $("#center").append(txt);
             }
             addSendDiv();
             loadMessageForm();
-            var txt = $("<div style='text-align: center' class=\"pagec\" id=\"pagearea\" data-scroll-reveal='enter right over 0.5s'></div>");
+            var txt = $("<div style='text-align: center' class=\"pagec\" id=\"pagearea\" data-scroll-reveal='enter bottom over 0.5s'></div>");
             txt.append("<ul class=\"pagination\"></ul>");
             $("#center").append(txt);
             $(".pagination").createPage({
@@ -53,7 +53,7 @@ function queryNowPage() {
  * 加载评论框
  */
 function loadMessageForm() {
-    $("#center").append("<div style=\"padding-left: 35%; \"><form class=\"bs-example bs-example-form\" role=\"form\" id='commentform'>\n" +
+    $("#center").append("<div class=\"messageInput\" ><form class=\"bs-example bs-example-form\" role=\"form\" id='commentform'>\n" +
         "                    <div class=\"input-group\">\n" +
         "                        <span class=\"input-group-addon\">留言区</span>\n" +
         "                        <textarea id='words' placeholder='输入留言' style=\"width:185px;margin-right: 50px;\" class=\"form-control\" rows=\"2\"></textarea>\n" +
@@ -234,7 +234,7 @@ function exitUser() {
  * 登录框
  */
 function loginForm() {
-    $("#center").html("<div style=\"padding-left: 35%; \">\n" +
+    $("#center").html("<div class=\"messageInput\">\n" +
         "                <form class=\"bs-example bs-example-form\" role=\"form\">\n" +
         "                    <div class=\"input-group\">\n" +
         "                        <span class=\"input-group-addon\">帐 号</span>\n" +
@@ -322,7 +322,7 @@ function toLogin() {
  * 注册界面
  */
 function regForm() {
-    $("#center").html("<div style=\"padding-left: 35%; \">\n" +
+    $("#center").html("<div class=\"messageInput\">\n" +
         "                <form class=\"bs-example bs-example-form\" role=\"form\">\n" +
         "                    <div class=\"input-group\">\n" +
         "                        <span class=\"input-group-addon\">帐 号</span>\n" +
