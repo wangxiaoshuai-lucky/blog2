@@ -106,7 +106,9 @@ function loadTags() {
                     queryCountByCondition();
                 });
                 txt.html(result.data[i].tagName);
-                $("#tags").append('<label>',txt,'</label>');
+                var beside = $("<label></label>");
+                beside.append(txt);
+                $("#tags").append(beside);
             }
             if (result.online_num != null)
                 $("#online").html(result.online_num + "人");

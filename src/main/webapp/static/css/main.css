@@ -42,8 +42,9 @@ body{
     background-color: #FFFFFF;
 }
 #tags label{
-    margin-top: 25px;
+    margin-top: 15px;
     margin-right: 20px;
+    margin-bottom: 5px;
 }
 .commentTime{
     color: #ccc;
@@ -80,16 +81,14 @@ body{
 .split{
     width:15px;
     height:15px;
-    /*border:1px green solid;*/
 }
 #info{
     width:100%;
-    /*border:1px green solid;*/
+    display: flex;
     background-color: #FFFFFF;
 }
 #barrage{
     width:100%;
-    /*border:1px green solid;*/
     background-color: #FFFFFF;
 }
 #img1{
@@ -135,6 +134,9 @@ img{
     #center{
         width:100%;
         text-align: left;
+    }
+    #info{
+        padding-left: 10%;
     }
     .topnav{
         margin-left: 0px;

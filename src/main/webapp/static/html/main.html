@@ -47,20 +47,20 @@
         <div class="leftd"></div>
         <div id="tagAndInfo">
             <div id="tag" style="background-color: #1b6d85">
-                <label >Blog分类</label>
+                <label style="padding-top: 2px">Blog分类</label>
             </div>
             <div id="tags">
             </div>
             <div class="split"></div>
             <div id="info">
                 <img src="/blog2/static/img/1.jpg" id="img1"/>
-                <p style="font-size: 14px; color: #788087;">当前人数: <span id="online"> </span></p>
-                <p style="font-size: 14px; color: #788087;">总浏览量:  <span id="total"></span></p>
-                <p style="font-size: 14px; color: #788087;">运行时间:  <span id="time"></span></p>
+                <p style="font-size: 14px; color: #788087;padding-top: 5px;text-align: left">
+                    当前: <span id="online" style="padding-right: 15px"></span>
+                    总浏览: <span id="total"></span></br>
+                    已运行: <span id="time"></span></p>
             </div>
-            <div class="split"></div>
             <div id="barrage">
-                Welcome<br/><input id="text" type="text" style="width:100%"/>
+                <input id="text" type="text" style="width:100%" value="wzy hello~"/>
                 <button onclick="send()">发送弹幕</button>
                 <button onclick="closeWebSocket()">关闭弹幕</button>
             </div>
@@ -160,7 +160,7 @@
             var textStyle=$("<font class='dan'></font>").text("" + text);
             textStyle.attr("id","" +this.name);
             var mathHeight = Math.round(Math.random()*tangmu.offsetHeight)+"px";
-            var textLeft=(tangmu.offsetWidth - text.toString().length*15) +"px";
+            var textLeft=(tangmu.offsetWidth - text.toString().length*5) +"px";
             console.log(text.toString().length);
             $("#top").append(textStyle);
             var textStyleObj = document.getElementById(""+this.name);
