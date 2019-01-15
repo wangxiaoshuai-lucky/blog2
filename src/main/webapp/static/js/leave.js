@@ -56,7 +56,7 @@ function loadMessageForm() {
     $("#center").append("<div class=\"messageInput\" ><form class=\"bs-example bs-example-form\" role=\"form\" id='commentform'>\n" +
         "                    <div class=\"input-group\">\n" +
         "                        <span class=\"input-group-addon\">留言区</span>\n" +
-        "                        <textarea id='words' placeholder='输入留言' style=\"width:185px;margin-right: 50px;\" class=\"form-control\" rows=\"2\"></textarea>\n" +
+        "                        <textarea id='words' placeholder='输入留言' style=\"width:185px;\" class=\"form-control\" rows=\"2\"></textarea>\n" +
         "                    </div>\n" +
         "                    <br>\n" +
         "                    <div class=\"input-group\">\n" +
@@ -238,12 +238,12 @@ function loginForm() {
         "                <form class=\"bs-example bs-example-form\" role=\"form\">\n" +
         "                    <div class=\"input-group\">\n" +
         "                        <span class=\"input-group-addon\">帐 号</span>\n" +
-        "                        <input id='username' type=\"text\" style=\"width:200px;margin-right: 50px;\" class=\"form-control\" placeholder=\"username\">\n" +
+        "                        <input id='username' type=\"text\" style=\"width:200px;\" class=\"form-control\" placeholder=\"username\">\n" +
         "                    </div>\n" +
         "                    <br>\n" +
         "                    <div class=\"input-group\">\n" +
         "                        <span class=\"input-group-addon\">密 码</span>\n" +
-        "                        <input id='password' type=\"password\" style=\"width:200px;margin-right: 50px;\" class=\"form-control\" placeholder=\"password\">\n" +
+        "                        <input id='password' type=\"password\" style=\"width:200px;\" class=\"form-control\" placeholder=\"password\">\n" +
         "                    </div>\n" +
         "                    <br>\n" +
         "                    <div class=\"input-group\">\n" +
@@ -326,17 +326,17 @@ function regForm() {
         "                <form class=\"bs-example bs-example-form\" role=\"form\">\n" +
         "                    <div class=\"input-group\">\n" +
         "                        <span class=\"input-group-addon\">帐 号</span>\n" +
-        "                        <input id='username' type=\"text\" style=\"width:200px;margin-right: 50px;\" class=\"form-control\" placeholder=\"username\">\n" +
+        "                        <input id='username' type=\"text\" style=\"width:200px;\" class=\"form-control\" placeholder=\"username\">\n" +
         "                    </div>\n" +
         "                    <br>\n" +
         "                    <div class=\"input-group\">\n" +
         "                        <span class=\"input-group-addon\">密 码</span>\n" +
-        "                        <input id='password' type=\"password\" style=\"width:200px;margin-right: 50px;\" class=\"form-control\" placeholder=\"password\">\n" +
+        "                        <input id='password' type=\"password\" style=\"width:200px;\" class=\"form-control\" placeholder=\"password\">\n" +
         "                    </div>\n" +
         "                    <br>\n" +
         "                    <div class=\"input-group\">\n" +
         "                        <span class=\"input-group-addon\" >签 名</span>\n" +
-        "                        <input id='userContent' type=\"text\" style=\"width:200px;margin-right: 25px;\" class=\"form-control\" placeholder=\"个性签名\">\n" +
+        "                        <input id='userContent' type=\"text\" style=\"width:200px;\" class=\"form-control\" placeholder=\"个性签名\">\n" +
         "                    </div>\n" +
         "                    <br>\n" +
         "                    <div class=\"input-group\">\n" +

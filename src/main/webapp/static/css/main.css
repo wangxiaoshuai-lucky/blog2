@@ -16,7 +16,7 @@ body{
     background-size:100% 100%;
 }
 .leftd{
-	width:100px;
+	width:2%;
 	height:2px;
 	/*border:1px black solid;*/
 }
@@ -75,7 +75,7 @@ body{
 }
 .codeDiv{
 	overflow:auto;
-	width:97%;
+	width:95%;
 	margin:auto;
 }
 .split{
@@ -104,10 +104,10 @@ img{
     max-width:70%;
 }
 #tagAndInfo {
-    width: 13%;
+    width: 245px
 }
 .topnav{
-    margin-left: 15%;
+    margin-left: 245px
 }
 .messageInput{
     padding-left: 35%;
@@ -115,7 +115,7 @@ img{
 .previous{
     margin-right: 1px;
 }
-@media screen and (max-width: 980px) {
+@media screen and (max-width: 900px) {
     #top{
         height:100px;
     }
@@ -136,21 +136,22 @@ img{
         text-align: left;
     }
     #info{
-        padding-left: 10%;
+        padding-left: 20%;
     }
     .topnav{
-        margin-left: 0px;
+        width: 100%;
+        margin-left: 1px;
     }
     .topnav a{
-        margin-left: 2px;
-        margin-right: 10px;
+        margin-left: 3%;
+        margin-right: 3%;
         margin-top: 10px;
     }
     .leftd{
         width: 5px;
     }
     .messageInput{
-        padding-left: 10%;
+        padding-left: 23%;
     }
     .dan{
          position:absolute;

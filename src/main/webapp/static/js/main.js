@@ -260,7 +260,7 @@ function loadCommentForm() {
     $("#center").append("<div class=\"messageInput\"><form class=\"bs-example bs-example-form\" role=\"form\" id='commentform'>\n" +
         "                    <div class=\"input-group\">\n" +
         "                        <span class=\"input-group-addon\">评论区</span>\n" +
-        "                        <textarea id='words' placeholder='输入评论' style=\"width:185px;margin-right: 50px;\" class=\"form-control\" rows=\"2\"></textarea>\n" +
+        "                        <textarea id='words' placeholder='输入评论' style=\"width:185px;\" class=\"form-control\" rows=\"2\"></textarea>\n" +
         "                    </div>\n" +
         "                    <br>\n" +
         "                    <div class=\"input-group\">\n" +
