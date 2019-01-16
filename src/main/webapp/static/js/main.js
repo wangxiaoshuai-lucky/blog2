@@ -407,14 +407,14 @@ function adduser(user,content,data,time) {
  * @returns {string}
  */
 function addbottom(time, tag, looks, comments) {
-   return "<p>"
-       + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class=\"glyphicon glyphicon-time\"></span> &nbsp;"
+   return "<p class='targs'>"
+       + "<span class=\"glyphicon glyphicon-time \"></span>"
        + longToTime(time)
-       + "&nbsp;&nbsp;&nbsp;<span class=\"glyphicon glyphicon-tags\"></span> &nbsp;"
+       + "&nbsp;&nbsp;<span class=\"glyphicon glyphicon-tags\"></span>&nbsp;"
        + tag
-       + "&nbsp;&nbsp;&nbsp;<span class=\"glyphicon glyphicon-eye-open\"></span> &nbsp;"
+       + "&nbsp;&nbsp;<span class=\"glyphicon glyphicon-eye-open\"></span>&nbsp;"
        + looks
-       + "&nbsp;&nbsp;&nbsp;<span class=\"glyphicon glyphicon-comment\"></span> &nbsp;"
+       + "&nbsp;&nbsp;<span class=\"glyphicon glyphicon-comment\"></span>&nbsp;"
        + comments
        + "</p>";
 }
@@ -445,13 +445,12 @@ function nex() {
 }
 function longToTime(timestamp) {
     var date = new Date(timestamp);//时间戳为10位需*1000，时间戳为13位的话不需乘1000
-    Y = date.getFullYear() + '-';
-    M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
-    D = date.getDate() + ' ';
-    h = date.getHours() + ':';
-    m = date.getMinutes() + ':';
-    s = date.getSeconds();
-    return Y+M+D+h+m+s;
+    Y = date.getFullYear() + '/';
+    M = (date.getMonth() + 1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '/';
+    D = (date.getDate() < 10 ? '0':'') + date.getDate() + ' ';
+    h = (date.getHours() < 10 ? '0':'') + date.getHours() + ':';
+    m = (date.getMinutes() < 10 ? '0':'') + date.getMinutes();
+    return Y+M+D+h+m;
 }
 
 function ToTime(timestamp) {

@@ -45,15 +45,16 @@ public abstract class BaseController {
     }
 
     protected String queryAdress() throws IOException {
-        String command = "java -classpath /root/AdressQueryUtil AdressQuery " + getRequest().getRemoteAddr();
-        BufferedReader br;
-        Process p = Runtime.getRuntime().exec(command);
-        br = new BufferedReader(new InputStreamReader(p.getInputStream(),"UTF-8"));
-        String line;
-        StringBuilder sb = new StringBuilder();
-        while ((line = br.readLine()) != null) {
-            sb.append(line);
-        }
-        return sb.toString();
+        return "";
+//        String command = "java -classpath /root/AdressQueryUtil AdressQuery " + getRequest().getRemoteAddr();
+//        BufferedReader br;
+//        Process p = Runtime.getRuntime().exec(command);
+//        br = new BufferedReader(new InputStreamReader(p.getInputStream(),"UTF-8"));
+//        String line;
+//        StringBuilder sb = new StringBuilder();
+//        while ((line = br.readLine()) != null) {
+//            sb.append(line);
+//        }
+//        return sb.toString();
     }
 }

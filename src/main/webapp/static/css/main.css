@@ -115,9 +115,16 @@ img{
 .previous{
     margin-right: 1px;
 }
+.targs{
+    margin-left: 2%;
+}
 @media screen and (max-width: 900px) {
     #top{
         height:100px;
+    }
+    .targs{
+        margin-left: 0px;
+        text-align: center;
     }
     #maxDiv{
         text-align: center;
