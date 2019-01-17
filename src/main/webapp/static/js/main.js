@@ -51,10 +51,8 @@ function weblog() {
         dataType: 'json',
         cache: false,
         success: function (result) {
-            ;
         },
         error: function (result) {
-            console.log(result);
         }
     });
 }

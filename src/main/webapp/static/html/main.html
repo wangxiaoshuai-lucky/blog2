@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta name="baidu-site-verification" content="5NEEbrIA6H" />
+    <meta name="baidu-site-verification" content="5NEEbrIA6H"/>
+    <meta name="referrer" content="no-referrer"/>
     <meta charset="utf-8">
     <title>王小征的个人博客</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 </head>
 <body>
 <!--<script src="/blog2/static/js/jquery-3.3.1.min.js"></script>-->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <link rel="SHORTCUT ICON" href="/blog2/static/img/bitbug_favicon.ico"/>
 <!--<link href="/blog2/static/css/bootstrap.min.css" rel="stylesheet">
 <script src="/blog2/static/js/bootstrap.min.js"></script>-->
@@ -16,15 +18,15 @@
 <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <link href="/blog2/static/css/main.css" rel="stylesheet">
 <link href="/blog2/static/css/base.css" rel="stylesheet">
-<script  src="/blog2/static/js/scrollReveal-min.js"></script>
-<script  type="text/javascript" src="/blog2/static/js/shCore-min.js"></script>
-<script  type="text/javascript" charset="UTF-8" src="/blog2/static/ueditor/ueditor.parse.min.js"></script>
+<script src="/blog2/static/js/scrollReveal-min.js"></script>
+<script type="text/javascript" src="/blog2/static/js/shCore-min.js"></script>
+<script type="text/javascript" charset="UTF-8" src="/blog2/static/ueditor/ueditor.parse.min.js"></script>
 <link rel="stylesheet" href="/blog2/static/ueditor/third-party/SyntaxHighlighter/shCoreDefault.css">
-<script  src="/blog2/static/js/main.js"></script>
-<script  src="/blog2/static/js/leave.js"></script>
+<script src="/blog2/static/js/main.js"></script>
+<script src="/blog2/static/js/leave.js"></script>
 <div id="top" style="text-align: center" data-scroll-reveal="enter top over 0.5s">
     <script>
-        document.getElementById('top').style.backgroundImage = 'url(https://img-blog.csdnimg.cn/20190116105219377.png?'+ Math.random()+ ')';
+        document.getElementById('top').style.backgroundImage = 'url(https://img-blog.csdnimg.cn/20190116105219377.png?t=' + Math.random() + ')';
         console.log('设置图片成功');
     </script>
 </div>
@@ -50,12 +52,21 @@
     <div id="contentDiv">
         <div class="leftd"></div>
         <div id="tagAndInfo">
+            <div class="person">
+                <label style="font-size: 20px; color:#00a0e9;background-color: #00a0e9">|</label>
+                <span style="font-size: 20px; color: #788087;">博客归档</span>
+            </div>
             <div id="tag" style="background-color: #1b6d85">
                 <label style="padding-top: 2px">Blog分类</label>
             </div>
             <div id="tags">
             </div>
             <div class="split"></div>
+            <div class="person">
+                <div class="line"></div>
+                <label style="font-size: 20px; color:#00a0e9;background-color: #00a0e9">|</label>
+                <span style="font-size: 20px; color: #788087;">网站信息</span>
+            </div>
             <div id="info">
                 <img src="/blog2/static/img/1.jpg" id="img1"/>
                 <p style="font-size: 14px; color: #788087;padding-top: 5px;text-align: left">
@@ -63,33 +74,75 @@
                     总浏览: <span id="total"></span></br>
                     已运行: <span id="time"></span></p>
             </div>
+            <div class="person">
+                <div class="line"></div>
+                <label style="font-size: 20px; color:#00a0e9;background-color: #00a0e9">|</label>
+                <span style="font-size: 20px; color: #788087;">试试弹幕</span>
+            </div>
             <div id="barrage">
                 <input id="text" type="text" style="width:100%" value="wzy hello~"/>
                 <button onclick="send()">发送弹幕</button>
                 <button onclick="closeWebSocket()">关闭弹幕</button>
             </div>
+            <div class="person">
+                <div class="line"></div>
+                <label style="font-size: 20px; color:#00a0e9;background-color: #00a0e9">|</label>
+                <span style="font-size: 20px; color: #788087;">个人信息</span>
+                <ul style="padding-left: 25px">
+                    <li><span style="font-size: 17px; color: #788087;">学习方向: JAVA后端开发</span></li>
+                    <li><span style="font-size: 17px; color: #788087;">爱好: 游戏，篮球</span></li>
+                    <li><span style="font-size: 17px; color: #788087;">QQ: 1510460325</span></li>
+                    <li><span style="font-size: 17px; color: #788087;">现况: 大三在读</span></li>
+                    <li>
+                        <span style="font-size: 17px; color: #788087;">github:
+                            <a style="font-size: 17px; color: #788087;" href="https://github.com/1510460325" target="_blank">我的github</a>
+                        </span>
+                    </li>
+                </ul>
+            </div>
+            <div class="person">
+                <div class="line"></div>
+                <label style="font-size: 20px; color:#00a0e9;background-color: #00a0e9">|</label>
+                <span style="font-size: 20px; color: #788087;">网站搭建</span>
+                <ul style="padding-left: 25px">
+                    <li><span style="font-size: 17px; color: #788087;">数据库: MySQL数据库</span></li>
+                    <li><span style="font-size: 17px; color: #788087;">后 端: SSM开源框架</span></li>
+                    <li><span style="font-size: 17px; color: #788087;">博客编写: 百度富文本编辑器</span></li>
+                    <li><span style="font-size: 17px; color: #788087;">前 端: Bootstrap排版</span></li>
+                    <li><span style="font-size: 17px; color: #788087;">数据交互: JQuery Ajax</span></li>
+                    <li>
+                        <span style="font-size: 17px; color: #788087;">项目地址:
+                            <a style="font-size: 17px; color: #788087;" href="https://github.com/1510460325/blog2" target="_blank">链接</a>
+                        </span>
+                    </li>
+                    <div class="line"></div>
+                </ul>
+            </div>
         </div>
         <div class="split"></div>
-        <div id="center">
-            <div style="display:none">
-                <img id="555" src="/blog2/pic/getPic.do">
-                <script>
-                    $("#555").attr('src',"/blog2/pic/getPic.do?t=" + Math.random());
-                </script>
+        <div id="centerBeside">
+            <div id="center">
+                <div style="display:none">
+                    <img id="555" src="/blog2/pic/getPic.do">
+                    <script>
+                        $("#555").attr('src', "/blog2/pic/getPic.do?t=" + Math.random());
+                    </script>
+                </div>
             </div>
         </div>
     </div>
     <div style="text-align: center;width: 95%">
-        <p style="margin-top: 20px;">Copyright © 2018-  wzy. All Rights Reserved</p>
+        <p style="margin-top: 20px;">Copyright © 2018- wzy. All Rights Reserved</p>
         <p style="margin-bottom: 20px">contact：1510460325</p>
     </div>
 </div>
 <script>
-    if (!(/msie [6|7|8|9]/i.test(navigator.userAgent))){//(!(/msie [6|7|8|9]/i.test(navigator.userAgent))判断浏览器
-        (function(){//scrollReveal的启动
+    if (!(/msie [6|7|8|9]/i.test(navigator.userAgent))) {//(!(/msie [6|7|8|9]/i.test(navigator.userAgent))判断浏览器
+        (function () {//scrollReveal的启动
             window.scrollReveal = new scrollReveal({reset: true});
         })();
-    };
+    }
+    ;
 </script>
 <script type="text/javascript">
     var websocket = null;
@@ -149,38 +202,39 @@
 </script>
 <script>
     function danmu() {
-        this.name='di1'+ Math.random();
-        this.si=null;
-        this.move=function (text) {
+        this.name = 'di1' + Math.random();
+        this.si = null;
+        this.move = function (text) {
             var tangmu = document.getElementById("top");
-            var textStyle=$("<font class='dan'></font>").text("" + text);
-            textStyle.attr("id","" +this.name);
-            var mathHeight = Math.round(Math.random()*tangmu.offsetHeight)+"px";
-            var textLeft=(tangmu.offsetWidth - text.toString().length*5) +"px";
+            var textStyle = $("<font class='dan'></font>").text("" + text);
+            textStyle.attr("id", "" + this.name);
+            var mathHeight = Math.round(Math.random() * tangmu.offsetHeight) + "px";
+            var textLeft = (tangmu.offsetWidth - text.toString().length * 5) + "px";
             console.log(text.toString().length);
             $("#top").append(textStyle);
-            var textStyleObj = document.getElementById(""+this.name);
-            textStyleObj.style.left=textLeft;
-            textStyleObj.style.top=mathHeight;
+            var textStyleObj = document.getElementById("" + this.name);
+            textStyleObj.style.left = textLeft;
+            textStyleObj.style.top = mathHeight;
             this.si = setInterval(function () {
                 this.xunhuan();
-            }.bind(this),100);
+            }.bind(this), 100);
         }.bind(this);
-        this.xunhuan=function(){
-            var textStyleObj = document.getElementById(""+this.name);
+        this.xunhuan = function () {
+            var textStyleObj = document.getElementById("" + this.name);
 
-            var x=parseInt(textStyleObj.style.left);
+            var x = parseInt(textStyleObj.style.left);
 
-            if(x<textStyleObj.style.width){
+            if (x < textStyleObj.style.width) {
                 clearInterval(this.si);
-                textStyleObj.innerHTML="";
-            }else{
-                x-=10;
+                textStyleObj.innerHTML = "";
+            } else {
+                x -= 10;
             }
-            textStyleObj.style.left=x+"px";
+            textStyleObj.style.left = x + "px";
         }.bind(this);
     }
-    function tangmu(text){
+
+    function tangmu(text) {
         new danmu().move(text);
     }
 </script>
