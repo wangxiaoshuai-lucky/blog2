@@ -244,6 +244,7 @@ function lookContent(i) {
             loadComments();
             uParse('#center',{rootPath:'../ueditor'});
             reset();
+            shLineWrap();
         },
         error: function (result) {
             console.log(result);
@@ -479,6 +480,21 @@ function reset() {
     };
     scrollReveal.init();
 }
+function shLineWrap() {
+    $(".container").removeClass();
+    SyntaxHighlighter.highlight();
+    $("table.syntaxhighlighter").each(function () {
+        if (!$(this).hasClass("nogutter")) {
+            var $gutter = $($(this).find(".gutter")[0]);
+            var $codeLines = $($(this).find(".code .line"));
+            $gutter.find(".line").each(function (i) {
+                $(this).height($($codeLines[i]).height());
+                $($codeLines[i]).height($($codeLines[i]).height());
+            });
+        }
+    });
+}
+
 /**
  * 分页按钮
  */
