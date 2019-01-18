@@ -1,9 +1,9 @@
 body {
     background-color: #F4F4F4;
-    /*background-color: 		#D8BFD8;*/
 }
 
 #maxDiv {
+    filter:alpha(Opacity=90);-moz-opacity:0.9;opacity: 0.9;
 }
 
 #contentDiv {
@@ -104,10 +104,9 @@ body {
     width: 15px;
     height: 15px;
 }
-.line{
+.splitLine{
     height: 15px;
     width: 100%;
-    background-color: #F4F4F4;
 }
 #info {
     width: 100%;
@@ -134,12 +133,12 @@ body {
 img {
     width: auto;
     max-width: 80%;
+    filter:alpha(Opacity=100);-moz-opacity:1;opacity: 1;
 }
 
 #tagAndInfo {
     width: 245px;
     height: auto;
-    background-color: #FFFFFF;
 }
 
 .topnav {
@@ -153,7 +152,9 @@ img {
 .previous {
     margin-right: 1px;
 }
-
+.person{
+    background-color: #FFFFFF;
+}
 .targs {
     margin-left: 2%;
 }
@@ -188,6 +189,9 @@ img {
     }
 
     .person{
+        display: none;
+    }
+    .splitLine{
         display: none;
     }
     #info {
