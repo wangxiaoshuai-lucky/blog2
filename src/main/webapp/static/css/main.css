@@ -1,9 +1,10 @@
 body {
     background-color: #F4F4F4;
+    /*background-image: url("https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=4197509560,1678527968&fm=26&gp=0.jpg");*/
 }
 
 #maxDiv {
-    filter:alpha(Opacity=90);-moz-opacity:0.9;opacity: 0.9;
+    /*filter:alpha(Opacity=90);-moz-opacity:0.9;opacity: 0.9;*/
 }
 
 #contentDiv {
