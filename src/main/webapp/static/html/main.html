@@ -215,7 +215,7 @@
             textStyleObj.style.top = mathHeight;
             this.si = setInterval(function () {
                 this.xunhuan();
-            }.bind(this), 100);
+            }.bind(this), 5);
         }.bind(this);
         this.xunhuan = function () {
             var textStyleObj = document.getElementById("" + this.name);
@@ -226,7 +226,7 @@
                 clearInterval(this.si);
                 textStyleObj.innerHTML = "";
             } else {
-                x -= 10;
+                x -= 1;
             }
             textStyleObj.style.left = x + "px";
         }.bind(this);
