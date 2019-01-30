@@ -21,7 +21,7 @@ body {
 }
 
 .leftd {
-    width: 2%;
+    width: 10%;
     height: 2px;
     /*border:1px black solid;*/
 }
@@ -32,7 +32,7 @@ body {
 }
 
 #centerBeside {
-    width: 70%;
+    width: 50%;
     text-align: center;
     background-color: #FFFFFF;
 }
