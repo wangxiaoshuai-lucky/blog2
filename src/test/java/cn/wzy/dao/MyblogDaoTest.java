@@ -3,6 +3,8 @@ package cn.wzy.dao;
 import cn.wzy.BaseTest;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.annotation.Rollback;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashMap;
 
@@ -10,6 +12,8 @@ import java.util.HashMap;
  * @author wzy
  * @Date 2018/4/10 12:28
  */
+@Rollback
+@Transactional
 public class MyblogDaoTest extends BaseTest {
 
     @Autowired
