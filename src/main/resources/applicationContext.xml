@@ -14,7 +14,7 @@
 
 	<context:annotation-config />
 
-	<context:component-scan base-package="cn" />
+	<context:component-scan base-package="cn.wzy" />
 
 	<bean
 			class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
