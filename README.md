@@ -26,3 +26,104 @@
 样式overflow:auto,为代码块下方自动设置滚动条
 #### 用户评论和留言过滤脚本
 data.replace(/&/g, "&amp").replace(/</g, "&lt").replace(/>/g, "&gt")
+### 数据库表
+~~~
+/*
+ Navicat Premium Data Transfer
+
+ Source Server         : 120.77.151.141
+ Source Server Type    : MySQL
+ Source Server Version : 50721
+ Source Host           : 120.77.151.141:3306
+ Source Schema         : blog2
+
+ Target Server Type    : MySQL
+ Target Server Version : 50721
+ File Encoding         : 65001
+
+ Date: 17/07/2019 22:53:17
+*/
+
+SET NAMES utf8mb4;
+SET FOREIGN_KEY_CHECKS = 0;
+
+-- ----------------------------
+-- Table structure for blog_info
+-- ----------------------------
+DROP TABLE IF EXISTS `blog_info`;
+CREATE TABLE `blog_info`  (
+  `id` int(11) NOT NULL,
+  `info` blob NULL,
+  `look_num` int(20) NULL DEFAULT NULL,
+  `start` bigint(20) NULL DEFAULT NULL,
+  `password` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for blog_tag
+-- ----------------------------
+DROP TABLE IF EXISTS `blog_tag`;
+CREATE TABLE `blog_tag`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `tag_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 19 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for leaving_message
+-- ----------------------------
+DROP TABLE IF EXISTS `leaving_message`;
+CREATE TABLE `leaving_message`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `content` varchar(20000) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `ip` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `addtime` bigint(20) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 95 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for myblog
+-- ----------------------------
+DROP TABLE IF EXISTS `myblog`;
+CREATE TABLE `myblog`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `content` blob NULL,
+  `tag` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `writetime` bigint(20) NULL DEFAULT NULL,
+  `look_num` int(20) NULL DEFAULT NULL,
+  `comment_num` int(20) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 163 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for user_info
+-- ----------------------------
+DROP TABLE IF EXISTS `user_info`;
+CREATE TABLE `user_info`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `password` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `content` varchar(20000) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `access` int(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 16 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for user_message
+-- ----------------------------
+DROP TABLE IF EXISTS `user_message`;
+CREATE TABLE `user_message`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `blog_Id` int(11) NULL DEFAULT NULL,
+  `content` varchar(20000) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `commenter_Id` int(11) NULL DEFAULT NULL,
+  `addtime` bigint(20) NULL DEFAULT NULL,
+  `ip` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+SET FOREIGN_KEY_CHECKS = 1;
+
+~~~
