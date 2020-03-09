@@ -85,6 +85,7 @@ function addmessage(user,data,time) {
     return "<img src=\"/blog2/static/img/user.png\" style=\"height: 25px; width: 25px\">\n" +
         "                <span class=\"user\"> " + user + " </span>\n" + "<br/><br/><br/>" +
         "                <p class=\"cons\">" + addNbsp(7) + data.replace(/&/g, "&amp").replace(/</g, "&lt").replace(/>/g, "&gt")  +
+        "                </br>" + addNbsp(6) +
         "                <span class=\"glyphicon glyphicon-time\"></span>\n" +
         "                <span class=\"commentTime\"> " + longToTime(time) + "</span>\n" +
         "                </p>";

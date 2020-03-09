@@ -7,6 +7,8 @@ import lombok.extern.log4j.Log4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import javax.imageio.ImageIO;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpSession;
 import java.awt.*;
@@ -66,8 +68,9 @@ public class PicController extends BaseController{
         g.setColor(reverse);
         g.drawString(randomString, 10, 20);
         ServletOutputStream out = getResponse().getOutputStream();
-        JPEGImageEncoder encoder = JPEGCodec.createJPEGEncoder(out);
-        encoder.encode(bi);
+//        JPEGImageEncoder encoder = JPEGCodec.createJPEGEncoder(out);
+//        encoder.encode(bi);
+        ImageIO.write(bi, "jpeg", out);
         out.flush();
     }
 }
